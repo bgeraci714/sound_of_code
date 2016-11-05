@@ -23,8 +23,14 @@ app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'this_should_be_configur
 @app.route('/')
 def home():
     #Render website's home page.
-    return render_template('home.html')
+    # was home.html
+    return render_template('upload.html')
 
+@app.route('/', methods=['POST'])
+def my_form_post():
+    text = request.form['text']
+    processed_text = text.upper()
+    return processed_text
 
 def allowed_file(filename):
     return '.' in filename and \
